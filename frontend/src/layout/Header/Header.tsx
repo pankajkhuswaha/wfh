@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 import DarkMode from "./DarkMode";
 
-// import Login from "./Login";
+import Login from "./Login";
 
 const Header = () => {
   const visible = useScrollView(60);
@@ -27,7 +27,7 @@ const Header = () => {
             </span>
           </Link>
           <div className="flex gap-4">
-            {/* <Login /> */}
+            <Login />
             <DarkMode />
           </div>
         </div>

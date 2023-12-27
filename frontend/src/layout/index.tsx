@@ -1,4 +1,3 @@
-
 import Header from "./Header/Header";
 const LayOut = ({ children }: ChildProps) => {
   return (
