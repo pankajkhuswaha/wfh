@@ -20,7 +20,7 @@ const {
   checkresetPasswordUser,
   verifyUser,
   deleteUser,
-} = require("../controllers/userController");
+} = require("../controllers/userCtrl");
 const {
   authMiddleware,
   isAdmin,
@@ -30,10 +30,12 @@ const {
 const router = express.Router();
 
 //*-------------- In used-------------
+router.post("/signup", createUser);
+router.post("/login", loginUserCtrl);
+
+
 router.get("/verify", verifyUser);
 router.post("/check", checkSignup);
-router.post("/register", createUser);
-router.post("/login", loginUserCtrl);
 router.post("/forgot-password-token", forgetPasswordToken);
 router.get("/reset-password/:token", checkresetPasswordUser);
 router.put("/reset-password/:token", resetPassword);

@@ -29,7 +29,7 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
       validate: {
-        validator: function(value) {
+        validator: function (value) {
           return /^[1-9]\d{9}$/.test(value);
         },
         message: props => `${props.value} is not a valid mobile number.`
