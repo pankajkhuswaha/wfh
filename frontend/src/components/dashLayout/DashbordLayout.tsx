@@ -2,11 +2,11 @@
 import SideBar from "./sidebar";
 import SidebarDesktop from "./SidebarDesktop";
 import { ChildrenProps } from "@/types/global";
-import { Sidebardata } from "../_data";
+import { Sidebardata } from "../../admin/_data";
 interface DashoardLayoutProp extends ChildrenProps {
   routes: Sidebardata[];
 }
-const AdminLayout = ({ children, routes }: DashoardLayoutProp) => {
+const DashLayout = ({ children, routes }: DashoardLayoutProp) => {
   return (
     <div>
       <div className="md:flex md:flex-row gap-4">
@@ -26,4 +26,4 @@ const AdminLayout = ({ children, routes }: DashoardLayoutProp) => {
   );
 };
 
-export default AdminLayout;
+export default DashLayout;
