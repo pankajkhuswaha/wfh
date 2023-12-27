@@ -1,3 +1,4 @@
+import AdminLayout from "@/admin/layout/AdminLayout";
 import Signup from "../auth/signUp";
 import Login from "./../auth/login";
 const AppRoute: RouteProps[] = [
@@ -25,7 +26,7 @@ const AppRoute: RouteProps[] = [
   {
     name: "AdminPannel",
     path: "/admin/*",
-    // element: <About />,
+    element: <AdminLayout />,
   },
 ];
 
