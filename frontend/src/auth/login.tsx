@@ -38,7 +38,7 @@ const Login = () => {
     formState: { errors },
   } = useForm();
   const loginuser = async (credential: any) => {
-    return await fetchApi("POST", "/api/users/login", credential);
+    return await fetchApi("POST", "users/login", credential);
   };
 
   const { mutateAsync, isPending, error } = useMutation({
@@ -93,7 +93,6 @@ const Login = () => {
             <Button>
               <Link
                 to={"/signup"}
-                className="dark:text-blue-500  text-white font-semibold text-lg"
               >
                 Sign up
               </Link>

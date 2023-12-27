@@ -15,7 +15,7 @@ const SignUp = () => {
   } = useForm();
 
   const signupUser = async (user: any) => {
-    return await fetchApi("POST", "/api/users/signup", user);
+    return await fetchApi("POST", "users/signup", user);
   };
 
   const { mutateAsync, isPending, error } = useMutation({
@@ -75,7 +75,7 @@ const SignUp = () => {
     },
   ];
 
-  const onSubmit = async (data: any) => {
+  const onSubmit = async (data: unknown) => {
     try {
       await mutateAsync(data);
       toast.success("SignUp successful");
@@ -119,7 +119,6 @@ const SignUp = () => {
               <Button>
                 <Link
                   to={"/login"}
-                  className="text-blue-500 font-semibold text-lg"
                 >
                   Login
                 </Link>

@@ -1,4 +1,5 @@
 import axios, { AxiosRequestConfig, isAxiosError } from "axios";
+import { baseUrl } from './../utils/baseUrl';
 
 const fetchApi = async (
   method: "GET" | "POST" | "PUT" | "DELETE",
@@ -8,7 +9,7 @@ const fetchApi = async (
 ) => {
   const config: AxiosRequestConfig = {
     method,
-    url: endpoint,
+    url: baseUrl+endpoint,
     data: body,
     headers,
   };

@@ -18,7 +18,7 @@ connectDb();
 app.use(express.json());
 app.use(cors());
 app.use(morgan("dev"));
-app.use("/api/user", userRoute);
+app.use("/api/users", userRoute);
 // app.use("/api/otp", otpRoute);
 // app.use("/api/admin", adminRoute);
 
