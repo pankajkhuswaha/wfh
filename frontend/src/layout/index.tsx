@@ -1,5 +1,5 @@
-import Header from "./Header";
 
+import Header from "./Header/Header";
 const LayOut = ({ children }: ChildProps) => {
   return (
     <>
