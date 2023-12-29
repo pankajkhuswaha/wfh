@@ -1,0 +1,57 @@
+select {
+    appearance: none;
+    position: relative;
+    outline: none;
+    width: 100%;
+    font-size: 14px;
+    padding: 12px !important;
+    background-color:transparent;
+    border: 1px solid #caced1;
+    border-radius: 0.25rem;
+    color: #7a7575;
+    cursor: pointer;
+  }
+  .custom-select {
+    /* ... */
+    position: relative;
+  }
+  option{
+      background: transparent;
+  }
+  .test{
+    background-color: red;
+  }
+  .custom-select::before,
+  .custom-select::after {
+    --size: 0.3rem;
+    position: absolute;
+    content: "";
+    right: 1rem;
+    pointer-events: none;
+  }
+  
+  .custom-select::before {
+    border-left: var(--size) solid transparent;
+    border-right: var(--size) solid transparent;
+    border-bottom: var(--size) solid black;
+    top: 40%;
+  }
+  
+  .custom-select::after {
+    border-left: var(--size) solid transparent;
+    border-right: var(--size) solid transparent;
+    border-top: var(--size) solid black;
+    top: 55%;
+  }
+  
+  select:focus + .focus {
+    position: absolute;
+    top: -90px;
+    left: -1px;
+    outline: none;
+    right: -1px;
+    bottom: -1px;
+    border: 2px solid var(--select-focus);
+    border-radius: inherit;
+  }
+  
