@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-export const remakEnum = [
+const remakEnum = [
   "Call Back",
   "Interested",
   "Not Interested",

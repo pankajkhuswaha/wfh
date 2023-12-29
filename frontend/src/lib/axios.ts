@@ -1,5 +1,11 @@
 import axios, { AxiosRequestConfig, isAxiosError } from "axios";
-import { baseUrl } from './../utils/baseUrl';
+import { baseUrl } from "./../utils/baseUrl";
+const token = localStorage.getItem("token") || "";
+
+const authheader = {
+  authorization: `Bearer ${token}`,
+  "Content-Type": "application/json",
+};
 
 const fetchApi = async (
   method: "GET" | "POST" | "PUT" | "DELETE",
@@ -9,9 +15,9 @@ const fetchApi = async (
 ) => {
   const config: AxiosRequestConfig = {
     method,
-    url: baseUrl+endpoint,
+    url: baseUrl + endpoint,
     data: body,
-    headers,
+    headers: { ...authheader, ...headers },
   };
   try {
     const res = await axios(config);

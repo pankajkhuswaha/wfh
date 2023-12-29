@@ -35,6 +35,7 @@ const RenderTable = (props: props) => {
   } = useMutation({
     mutationKey: [route],
     mutationFn: (id: string) => fetchApi("DELETE", `${route}/${id}`),
+    retry: false,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [route] });
     },
@@ -68,6 +69,7 @@ const RenderTable = (props: props) => {
   } = useMutation({
     mutationKey: [route, "bulk"],
     mutationFn: (ids: string[]) => fetchApi("DELETE", route, { ids }),
+    retry: false,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [route] });
     },

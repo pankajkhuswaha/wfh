@@ -7,7 +7,8 @@ const PORT = process.env.Port || 7001;
 const { notFound, errorHandler } = require("./middlewares/errorHandler");
 
 const connectDb = require("./config/dbconfig");
-const userRoute = require("./Routes/userRoute");
+const userRoute = require("./routes/userRoute");
+const clientRoute = require("./routes/clientRoute");
 // const otpRoute = require("./Routes/otpRoute");
 // const adminRoute = require("./Routes/adminRoute");
 
@@ -19,6 +20,7 @@ app.use(express.json());
 app.use(cors());
 app.use(morgan("dev"));
 app.use("/api/users", userRoute);
+app.use("/api/clients", clientRoute);
 // app.use("/api/otp", otpRoute);
 // app.use("/api/admin", adminRoute);
 

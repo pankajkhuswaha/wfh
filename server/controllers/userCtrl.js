@@ -36,16 +36,15 @@ const checkSignup = async (req, res) => {
 
 const verifyUser = asyncHandler(async (req, res) => {
   let token;
-  if (req?.headers?.authorization?.startsWith("Bearer")) {
-    token = req.headers.authorization.split(" ")[1];
-    try {
-      if (token) {
-        const decoded = jwt.verify(token, process.env.JWT_SECRET);
-        const user = await User.findById(decoded?.id);
-        req.user = user;
-        res.json(user);
-      }
-    } catch (error) {
+  const auth = req?.headers?.authorization
+  if (auth?.startsWith("Bearer")) {
+    token = auth?.split(" ")[1];
+    if (token) {
+      const decoded = jwt.verify(token, process.env.JWT_SECRET);
+      const user = await User.findById(decoded?.id);
+      req.user = user;
+      res.json(user);
+    } else {
       res
         .status(500)
         .json({ message: "Not Authorized token expired, Please Login again" });
@@ -67,7 +66,7 @@ const createUser = asyncHandler(async (req, res) => {
       mongooseError(error, res);
     }
   } else {
-    res.status(400).json("You are already registered with us !");
+    res.status(400).json({ message: "You are already registered with us !" });
   }
 });
 
@@ -113,7 +112,7 @@ const forgetPasswordToken = asyncHandler(async (req, res) => {
     };
     sendEmail(data);
     res.json(token);
-  } catch (err) {}
+  } catch (err) { }
 });
 
 const checkresetPasswordUser = asyncHandler(async (req, res) => {
@@ -309,19 +308,7 @@ const getaUser = asyncHandler(async (req, res) => {
   }
 });
 
-const deleteaUser = asyncHandler(async (req, res) => {
-  const { id } = req.params;
-  validateMongoDbId(id);
 
-  try {
-    const deleteaUser = await User.findByIdAndDelete(id);
-    res.json({
-      deleteaUser,
-    });
-  } catch (error) {
-    throw new Error(error);
-  }
-});
 
 const blockUser = asyncHandler(async (req, res) => {
   const { id } = req.params;
@@ -391,6 +378,17 @@ const deleteUser = asyncHandler(async (req, res) => {
     throw new Error(error);
   }
 });
+const deleteMultipleUser = asyncHandler(async (req, res) => {
+  const { ids } = await req.body;
+  try {
+    // Delete items based on provided IDs
+    await User.deleteMany({ _id: { $in: ids } });
+    return res.json({ message: "Users Deleted successfully" });
+  } catch (error) {
+    mongooseError(error);
+  }
+});
+
 // getAllOrders()
 
 module.exports = {
@@ -398,7 +396,6 @@ module.exports = {
   loginUserCtrl,
   getallUser,
   getaUser,
-  deleteaUser,
   updatedUser,
   blockUser,
   unblockUser,
@@ -414,4 +411,5 @@ module.exports = {
   checkresetPasswordUser,
   verifyUser,
   deleteUser,
+  deleteMultipleUser,
 };

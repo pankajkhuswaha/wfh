@@ -1,6 +1,5 @@
-"use client";
 import { useForm } from "react-hook-form";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import fetchApi from "@/lib/axios";
 import { toast } from "react-toastify";
 import { Button } from "@/components/ui/button";
@@ -37,17 +36,25 @@ const Login = () => {
     control,
     formState: { errors },
   } = useForm();
-  const loginuser = async (credential: any) => {
+  const loginuser = async (credential: data) => {
     return await fetchApi("POST", "users/login", credential);
   };
+  const queryClient = useQueryClient();
 
   const { mutateAsync, isPending, error } = useMutation({
     mutationKey: ["login"],
     mutationFn: loginuser,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["profile"] });
+    },
   });
-  const onSubmit = async (data: any) => {
+
+  const onSubmit = async (data: data) => {
     try {
-      const { role } = await mutateAsync(data);
+      const { role, token } = await mutateAsync(data);
+      localStorage.setItem("token", token);
+      
+
       switch (role) {
         case "admin":
           navigate("/admin");
@@ -91,11 +98,7 @@ const Login = () => {
           <div className="flex justify-between items-center px-2 mt-2">
             <p>Not Register with us ?</p>
             <Button>
-              <Link
-                to={"/signup"}
-              >
-                Sign up
-              </Link>
+              <Link to={"/signup"}>Sign up</Link>
             </Button>
           </div>
         </form>

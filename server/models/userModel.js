@@ -4,9 +4,9 @@ const crypto = require("crypto");
 
 const userSchema = new mongoose.Schema(
   {
-    name: {
+    fullName: {
       type: String,
-      required: true,
+      required: [true, "Name is Required"],
       validate: {
         validator: function (value) {
           return /^[a-zA-Z\s]+$/.test(value);
@@ -25,6 +25,10 @@ const userSchema = new mongoose.Schema(
         message: (props) => `${props.value} is not a valid email address.`,
       },
     },
+    empId: {
+      type: String,
+      required: true,
+    },
     mobile: {
       type: String,
       required: true,
@@ -32,8 +36,8 @@ const userSchema = new mongoose.Schema(
         validator: function (value) {
           return /^[1-9]\d{9}$/.test(value);
         },
-        message: props => `${props.value} is not a valid mobile number.`
-      }
+        message: (props) => `${props.value} is not a valid mobile number.`,
+      },
     },
     password: {
       type: String,

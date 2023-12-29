@@ -4,7 +4,6 @@ const {
   loginUserCtrl,
   getallUser,
   getaUser,
-  deleteaUser,
   updatedUser,
   blockUser,
   unblockUser,
@@ -19,6 +18,7 @@ const {
   checkSignup,
   checkresetPasswordUser,
   verifyUser,
+  deleteMultipleUser,
   deleteUser,
 } = require("../controllers/userCtrl");
 const {
@@ -32,6 +32,13 @@ const router = express.Router();
 //*-------------- In used-------------
 router.post("/signup", createUser);
 router.post("/login", loginUserCtrl);
+router.get("/profile", verifyUser);
+router.delete("/profile", updatedUser);
+router.get("/",authMiddleware,isAdmin, getallUser);
+router.delete("/",authMiddleware,isAdmin, deleteMultipleUser);
+router.delete("/:id", authMiddleware, isAdmin, deleteUser);
+router.get("/:id", authMiddleware, isAdmin, getaUser);
+router.put("/:id", authMiddleware, isAdmin, updateRole);
 
 
 router.get("/verify", verifyUser);
@@ -44,16 +51,11 @@ router.put("/reset-password/:token", resetPassword);
 router.post("/isadmin", isAdminuser);
 router.put("/password", authMiddleware, updatePassword);
 router.post("/admin-login", loginAdmin);
-router.get("/all-users", getallUser);
 router.get("/refresh", handleRefreshToken);
 router.post("/logout", logout);
-router.get("/:id", authMiddleware, isAdmin, getaUser);
-router.delete("/:id", deleteaUser);
 router.put("/order/update-order/:id", authMiddleware);
 router.put("/edit-user", authMiddleware, updatedUser);
-router.put("/edit-role/:id", authMiddleware, isAdmin, updateRole);
 router.put("/block-user/:id", authMiddleware, isAdmin, isSuper, blockUser);
 router.put("/unblock-user/:id", authMiddleware, isAdmin, isSuper, unblockUser);
-router.delete("/:id", authMiddleware, isAdmin, deleteUser);
 
 module.exports = router;

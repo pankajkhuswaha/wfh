@@ -3,7 +3,12 @@ import LayOut from "./layout";
 import AppRoute from "./routes/route";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Auth from "./auth/auth";
+
+
+
 function App() {
+ 
   return (
     <>
       <ToastContainer
@@ -18,6 +23,7 @@ function App() {
         pauseOnHover
         theme="colored"
       />
+      <Auth/>
       <LayOut>
         <Routes>
           {AppRoute.map((route, index) => {

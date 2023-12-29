@@ -2,7 +2,7 @@
 import SideBar from "./sidebar";
 import SidebarDesktop from "./SidebarDesktop";
 import { ChildrenProps } from "@/types/global";
-import { Sidebardata } from "../../admin/_data";
+import { Sidebardata } from "../../admin/routes";
 interface DashoardLayoutProp extends ChildrenProps {
   routes: Sidebardata[];
 }

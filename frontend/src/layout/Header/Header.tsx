@@ -12,7 +12,7 @@ const Header = () => {
 
   return (
     <header
-      className={`w-full flex-center relative border-b-[1px] bg-gray-100 dark:bg-gray-950 z-[9] ${
+      className={`w-full flex-center relative border-b-[1px] bg-gray-200 dark:bg-gray-950 z-[9] ${
         visible && "sticky top-0 z-10"
       }   `}
     >
@@ -22,7 +22,7 @@ const Header = () => {
             <span className="text-primary">
               <i className="fa-solid fa-code"></i>
             </span>
-            <span className="">
+            <span className=" whitespace-nowrap">
               Work From <span className="text-blue-500">Home</span>
             </span>
           </Link>
