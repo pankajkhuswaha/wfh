@@ -1,6 +1,8 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import React, { useState } from "react";
+import './index.css'
 import { FormSchema, FormSchemaType, InputFileds } from "@/types/global";
-import { serviceOptions } from "./_data";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -15,6 +17,9 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import { serviceOptions } from "./_data";
+
+
 
 interface DatePickerDemoProps {
   onSelectDate: (date: Date) => void;
@@ -31,16 +36,12 @@ const DatePickerDemo: React.FC<DatePickerDemoProps> = ({
         <Button
           variant="outline"
           className={cn(
-            "w-[240px] justify-start text-left font-normal",
-            !selectedDate && "text-muted-foreground"
+            'w-[240px] justify-start text-left font-normal',
+            !selectedDate && 'text-muted-foreground'
           )}
         >
           <CalendarIcon className="mr-2 h-4 w-4" />
-          {selectedDate ? (
-            format(selectedDate, "PPP")
-          ) : (
-            <span>Pick a date</span>
-          )}
+          {selectedDate ? format(selectedDate, 'PPP') : <span>Pick a date</span>}
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-auto p-0" align="start">
@@ -54,6 +55,7 @@ const DatePickerDemo: React.FC<DatePickerDemoProps> = ({
     </Popover>
   );
 };
+
 
 const AddClient = () => {
   const [selectedVal, setSelectedVal] = useState<string>("");
@@ -99,17 +101,17 @@ const AddClient = () => {
 
   return (
     <form
-      className="md:w-8/12 gap-4 mx-auto border-2 border-muted p-3 rounded-sm"
+      className="md:w-8/12 gap-4 mx-auto my-5  border-2 border-muted p-3 rounded-sm"
       onSubmit={handleSubmit(onSubmit)}
     >
       {InputFileds.map(({ name, placeholder }) => (
-        <div key={name}>
+        <div key={name} className="my-3">
           <Input placeholder={placeholder} {...register(name)} />
           {errors[name] && <span>{errors[name]?.message}</span>}
         </div>
       ))}
 
-      <div className="flex flex-col gap-4">
+      <div className=" flex flex-col gap-4">
         <div className="custom-select">
           <select
             {...register("status")}
@@ -123,6 +125,8 @@ const AddClient = () => {
             <option value="Demo time">Demo Time</option>
             <option value="Follow Up Next Month">Flexible Next Month</option>
           </select>
+
+
         </div>
 
         {selectedVal === "Call Back" && (
