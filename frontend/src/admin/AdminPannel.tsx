@@ -17,7 +17,7 @@ const AdminPannel = () => {
     navigate("/login");
   }
   return (
-    <DashLayout routes={adminRoute}>
+    <DashLayout routes={route || []}>
       <Routes>
         {route?.map((route, i) => {
           if (route.child) {
@@ -32,7 +32,7 @@ const AdminPannel = () => {
             return (
               <Route
                 key={i}
-                path={route.Link?.replace(`/${user?.role}}`, "")}
+                path={route.Link?.replace(`/${user?.role}`, "")}
                 element={route.element}
               />
             );
