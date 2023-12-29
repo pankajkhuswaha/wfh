@@ -53,15 +53,14 @@ const Login = () => {
     try {
       const { role, token } = await mutateAsync(data);
       localStorage.setItem("token", token);
-      
 
       switch (role) {
         case "admin":
-          navigate("/admin");
+          window.location.href = "/admin";
           toast.success("Login successful");
           break;
         case "employee":
-          navigate("/employee");
+          window.location.href = "/employee";
           toast.success("Login successful");
           break;
         default:

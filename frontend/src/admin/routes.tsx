@@ -66,12 +66,6 @@ export const empRoute: Sidebardata[] = [
     Link: "/employee",
     element: <Dashboard />,
   },
-  {
-    name: "User",
-    logo: <CircleUser />,
-    Link: "/employee/userlist",
-    element: <UserList />,
-  },
 
   {
     name: "Clients",
@@ -90,12 +84,6 @@ export const empRoute: Sidebardata[] = [
         logo: <MonitorUp />,
         Link: "/employee/client/add",
         element: <AddClient />,
-      },
-      {
-        name: "Upload Data",
-        logo: <MonitorUp />,
-        Link: "/employee/client/upload",
-        element: <UploadClients />,
       },
     ],
   },

@@ -80,10 +80,10 @@ const Input = (props: InputProps) => {
                   id={id}
                   placeholder={placeholder}
                   className={`w-full px-4 py-2 rounded-lg mt-2 border-2 
-                focus:bg-white focus:outline-none bg-gray-200 dark:bg-gray-800 ${
+                focus:bg-white dark:focus:bg-gray-700 focus:outline-none bg-gray-200 dark:bg-gray-800 ${
                   error
                     ? "border-red-600 focus:border-red-500 outline-none"
-                    : "focus:border-blue-500 outline-none"
+                    : "focus:border-blue-500 text-gray-200  outline-none"
                 }  `}
                   onChange={(e) => {
                     field.onChange(e);
