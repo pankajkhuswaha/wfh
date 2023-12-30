@@ -16,13 +16,15 @@ import {
     return (
       <>
         <Sheet>
-          <SheetTrigger>
-            <Menu />
-          </SheetTrigger>
+          <div className="absolute top-7 left-5 z-[9]">
+            <SheetTrigger>
+              <Menu />
+            </SheetTrigger>
+          </div>
           <SheetContent side={"left"}>
             <SheetHeader className="z-[999]">
               <SheetDescription>
-                <SidebarDesktop routes={routes}/>
+                <SidebarDesktop routes={routes} />
               </SheetDescription>
             </SheetHeader>
           </SheetContent>

@@ -23,7 +23,7 @@ function App() {
         pauseOnHover
         theme="colored"
       />
-      <Auth/>
+      <Auth />
       <LayOut>
         <Routes>
           {AppRoute.map((route, index) => {

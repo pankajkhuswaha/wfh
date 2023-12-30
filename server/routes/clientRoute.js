@@ -6,10 +6,12 @@ const {
   delteClient,
   delteMultipleClient,
   uploadClients,
+  clientStatus,
 } = require("../controllers/clientCtrl");
 const router = express.Router();
 
 router.get("/", authMiddleware, getAllClients);
+router.get("/stats", authMiddleware, clientStatus);
 router.post("/", authMiddleware, uploadClients);
 router.delete("/", authMiddleware, isAdmin, delteMultipleClient);
 router.put("/:_id", authMiddleware, updateClient);

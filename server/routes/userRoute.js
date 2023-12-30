@@ -39,6 +39,7 @@ router.delete("/",authMiddleware,isAdmin, deleteMultipleUser);
 router.delete("/:id", authMiddleware, isAdmin, deleteUser);
 router.get("/:id", authMiddleware, isAdmin, getaUser);
 router.put("/:id", authMiddleware, isAdmin, updateRole);
+router.post("/stats",authMiddleware, isAdminuser);
 
 
 router.get("/verify", verifyUser);
@@ -48,7 +49,6 @@ router.get("/reset-password/:token", checkresetPasswordUser);
 router.put("/reset-password/:token", resetPassword);
 
 //TODO----------- Un used-------------
-router.post("/isadmin", isAdminuser);
 router.put("/password", authMiddleware, updatePassword);
 router.post("/admin-login", loginAdmin);
 router.get("/refresh", handleRefreshToken);

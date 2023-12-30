@@ -22,7 +22,7 @@ const Header = () => {
             <span className="text-primary">
               <i className="fa-solid fa-code"></i>
             </span>
-            <span className=" whitespace-nowrap">
+            <span className="max-sm:ml-10 whitespace-nowrap">
               Work From <span className="text-blue-500">Home</span>
             </span>
           </Link>

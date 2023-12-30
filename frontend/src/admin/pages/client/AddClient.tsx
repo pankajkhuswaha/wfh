@@ -1,7 +1,8 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import React, { useState } from "react";
-import './index.css'
+import React, { useEffect, useState } from "react";
+import "./index.css";
 import { FormSchema, FormSchemaType, InputFileds } from "@/types/global";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Input } from "@/components/ui/input";
@@ -18,8 +19,10 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { serviceOptions } from "./_data";
-
-
+import { useMutation } from "@tanstack/react-query";
+import fetchApi from "@/lib/axios";
+import { useLocation, useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 
 interface DatePickerDemoProps {
   onSelectDate: (date: Date) => void;
@@ -36,12 +39,16 @@ const DatePickerDemo: React.FC<DatePickerDemoProps> = ({
         <Button
           variant="outline"
           className={cn(
-            'w-[240px] justify-start text-left font-normal',
-            !selectedDate && 'text-muted-foreground'
+            "w-[240px] justify-start text-left font-normal",
+            !selectedDate && "text-muted-foreground"
           )}
         >
           <CalendarIcon className="mr-2 h-4 w-4" />
-          {selectedDate ? format(selectedDate, 'PPP') : <span>Pick a date</span>}
+          {selectedDate ? (
+            format(selectedDate, "PPP")
+          ) : (
+            <span>Pick a date</span>
+          )}
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-auto p-0" align="start">
@@ -55,7 +62,6 @@ const DatePickerDemo: React.FC<DatePickerDemoProps> = ({
     </Popover>
   );
 };
-
 
 const AddClient = () => {
   const [selectedVal, setSelectedVal] = useState<string>("");
@@ -88,30 +94,52 @@ const AddClient = () => {
     const updatedReviews = reviews.filter((_, i) => i !== index);
     setReviews(updatedReviews);
   };
+  const { _id } = useParams();
+  const { mutateAsync } = useMutation({
+    mutationKey: ["add-client"],
+    mutationFn: (data: data) => fetchApi("PUT", `clients/${_id}`, data),
+  });
 
-  const onSubmit: SubmitHandler<any> = (data) => {
+  const onSubmit: SubmitHandler<any> = async (data) => {
     const formData = {
       ...data,
       remarks: reviews,
     };
-    reset();
-
-    console.log(formData);
+    try {
+      await mutateAsync(formData);
+      toast.success("Client updated successfully");
+    } catch (error) {
+      reset();
+    }
   };
+  const { state } = useLocation();
+  useEffect(() => {
+    if (state) {
+      setValue("name", state.name);
+      setValue("mobile", state.mobile);
+      setValue("address", state.address);
+      setValue("location", state.location);
+    }
+  }, [state]);
 
   return (
     <form
-      className="md:w-8/12 gap-4 mx-auto my-5  border-2 border-muted p-3 rounded-sm"
+      className="border rounded-xl p-4 md:py-10 m-1 md:m-4"
       onSubmit={handleSubmit(onSubmit)}
     >
-      {InputFileds.map(({ name, placeholder }) => (
-        <div key={name} className="my-3">
-          <Input placeholder={placeholder} {...register(name)} />
-          {errors[name] && <span>{errors[name]?.message}</span>}
-        </div>
-      ))}
+      <h1 className="text-center text-xl md:text-3xl font-semibold mb-3 md:mb-10">
+        Update Client Information
+      </h1>
+      <div className="flex flex-wrap justify-between">
+        {InputFileds.map(({ name, placeholder }) => (
+          <div key={name} className=" w-full md:w-[49%]">
+            <Input placeholder={placeholder} {...register(name)} />
+            {errors[name] && <span>{errors[name]?.message}</span>}
+          </div>
+        ))}
+      </div>
 
-      <div className=" flex flex-col gap-4">
+      <div className=" flex flex-col gap-4 my-2">
         <div className="custom-select">
           <select
             {...register("status")}
@@ -125,8 +153,6 @@ const AddClient = () => {
             <option value="Demo time">Demo Time</option>
             <option value="Follow Up Next Month">Flexible Next Month</option>
           </select>
-
-
         </div>
 
         {selectedVal === "Call Back" && (
@@ -179,7 +205,9 @@ const AddClient = () => {
         Add Remark
       </Button>
       <br />
-      <Button type="submit">Submit</Button>
+      <Button type="submit" className="w-full my-2">
+        Submit
+      </Button>
     </form>
   );
 };

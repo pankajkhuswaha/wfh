@@ -82,7 +82,7 @@ export const empRoute: Sidebardata[] = [
       {
         name: "Add Client",
         logo: <MonitorUp />,
-        Link: "/employee/client/add",
+        Link: "/employee/client/:_id",
         element: <AddClient />,
       },
     ],

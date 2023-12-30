@@ -24,6 +24,14 @@ const Auth = () => {
   if (pathname === "/login" || pathname === "/signup") {
     return;
   }
+  if (pathname == "/") {
+    if (!user && !isLoading) {
+      return (window.location.href = "/login");
+    } else {
+      window.location.href = `/${user?.role}`;
+      return;
+    }
+  }
   if (!user && !isLoading) {
     window.location.href = "/login";
   }
