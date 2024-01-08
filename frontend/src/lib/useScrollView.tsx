@@ -5,7 +5,7 @@ const useScrollView = (width: number) => {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.pageYOffset > width) {
+      if (window.scrollY > width) {
         setVisible(true);
       } else {
         setVisible(false);

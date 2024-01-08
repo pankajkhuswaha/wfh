@@ -21,7 +21,7 @@ import {
 import { serviceOptions } from "./_data";
 import { useMutation } from "@tanstack/react-query";
 import fetchApi from "@/lib/axios";
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 
 interface DatePickerDemoProps {
@@ -100,6 +100,7 @@ const AddClient = () => {
     mutationFn: (data: data) => fetchApi("PUT", `clients/${_id}`, data),
   });
 
+  const navigate = useNavigate()
   const onSubmit: SubmitHandler<any> = async (data) => {
     const formData = {
       ...data,
@@ -108,6 +109,7 @@ const AddClient = () => {
     try {
       await mutateAsync(formData);
       toast.success("Client updated successfully");
+      navigate("/employee/client/clientList");
     } catch (error) {
       reset();
     }

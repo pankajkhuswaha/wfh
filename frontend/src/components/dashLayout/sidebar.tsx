@@ -16,7 +16,7 @@ import {
     return (
       <>
         <Sheet>
-          <div className="absolute top-5 left-2 z-[9]">
+          <div className="fixed top-5 left-2 z-[9]">
             <SheetTrigger>
               <Menu />
             </SheetTrigger>

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-toastify";
@@ -88,9 +89,9 @@ const SignUp = () => {
   return (
     <>
       <div className="flex justify-center items-center py-12 px-1">
-        <div className="w-full lg:w-1/2 xl:w-[550px] morphism p-4 md:p-10 morphism flex flex-wrap">
-          <h1 className="text-center w-full text-4xl mt-1 mb-4 font-bold">
-            Welcome to DeepnapSoftech
+        <div className="w-full mx-3 lg:w-1/2 xl:w-[550px] morphism p-4 md:p-10 morphism flex flex-wrap">
+          <h1 className="text-center w-full text-2xl mt-1 mb-4 font-bold">
+            Welcome to Deepnap Softech
           </h1>
           <form className="w-full" onSubmit={handleSubmit(onSubmit)}>
             <div className="flex flex-wrap">
@@ -114,7 +115,7 @@ const SignUp = () => {
             >
               {isPending ? "Signing Up..." : "Sign Up"}
             </Button>
-            <div className="flex justify-between items-center px-2 mt-2">
+            <div className="flex mt-6 justify-between items-center px-2">
               <p>Not Register with us ?</p>
               <Button>
                 <Link

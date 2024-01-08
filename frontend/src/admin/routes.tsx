@@ -16,6 +16,7 @@ export interface Sidebardata {
   Link?: string;
   child?: Sidebardata[];
   element?: React.ReactNode;
+  hide?: boolean;
 }
 
 export const adminRoute: Sidebardata[] = [
@@ -60,25 +61,39 @@ export const empRoute: Sidebardata[] = [
     Link: "/employee",
     element: <Dashboard />,
   },
-
   {
     name: "Clients",
     logo: <GanttChartSquare />,
     Link: "/employee/client/clientList",
     element: <ClientList />,
-    child: [
-      {
-        name: "Clients List",
-        logo: <GanttChartSquare />,
-        Link: "/employee/client/clientList",
-        element: <ClientList />,
-      },
-      {
-        name: "Add Client",
-        logo: <MonitorUp />,
-        Link: "/employee/client/:_id",
-        element: <AddClient />,
-      },
-    ],
   },
+  {
+    name: "update Client",
+    logo: <MonitorUp />,
+    Link: "/employee/client/:_id",
+    element: <AddClient />,
+    hide: true,
+  },
+
+  // {
+  //   name: "Clients",
+  //   logo: <GanttChartSquare />,
+  //   Link: "/employee/client/clientList",
+  //   element: <ClientList />,
+  //   child: [
+  //     {
+  //       name: "Clients List",
+  //       logo: <GanttChartSquare />,
+  //       Link: "/employee/client/clientList",
+  //       element: <ClientList />,
+  //     },
+  //     {
+  //       name: "Add Client",
+  //       logo: <MonitorUp />,
+  //       Link: "/employee/client/:_id",
+  //       element: <AddClient />,
+  //       hide: true,
+  //     },
+  //   ],
+  // },
 ];

@@ -1,21 +1,25 @@
+import { Sidebardata } from "@/admin/routes";
 import {
-    Accordion,
-    AccordionContent,
-    AccordionItem,
-    AccordionTrigger,
-  } from "@/components/ui/accordion";
-  import { cn } from "@/lib/utils";
-  import { SidebarRouteProps } from "@/types/global";
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import { cn } from "@/lib/utils";
 import { Link } from "react-router-dom";
-  
-  const SidebarDesktop = ({ routes }: { routes: SidebarRouteProps[] }) => {
-    
-    return (
-      <>
-        <Accordion type="multiple">
-          {routes.map((ele, id) => {
-            return (
-              <AccordionItem key={id} value={ele.name}>
+
+const SidebarDesktop = ({ routes }: { routes: Sidebardata[] }) => {
+  return (
+    <>
+      {routes.map((ele, id) => {
+        if(ele.hide){
+          return
+        }
+
+        if (ele.child) {
+          return (
+            <Accordion key={id} type="multiple">
+              <AccordionItem value={ele.name}>
                 <AccordionTrigger
                   className={cn(" no-underline hover:no-underline")}
                 >
@@ -41,12 +45,23 @@ import { Link } from "react-router-dom";
                   </AccordionContent>
                 )}
               </AccordionItem>
-            );
-          })}
-        </Accordion>
-      </>
-    );
-  };
-  
-  export default SidebarDesktop;
-  
+            </Accordion>
+          );
+        }else{
+          return (
+            <Link
+              key={id}
+              to={`${ele?.Link}`}
+              className="flex gap-4 items-center border-b py-4"
+            >
+              {ele.logo}
+              {ele.name}
+            </Link>
+          );
+        }
+      })}
+    </>
+  );
+};
+
+export default SidebarDesktop;

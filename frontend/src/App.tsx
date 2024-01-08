@@ -4,6 +4,7 @@ import AppRoute from "./routes/route";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Auth from "./auth/auth";
+// import AddClient from "./admin/pages/client/AddClient";
 
 
 
@@ -31,6 +32,7 @@ function App() {
               <Route key={index} path={route.path} element={route.element} />
             );
           })}
+          {/* <Route path={"/employee/client/:_id"} element={<AddClient/>} /> */}
         </Routes>
       </LayOut>
     </>

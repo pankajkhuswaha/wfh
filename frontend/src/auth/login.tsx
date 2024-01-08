@@ -73,9 +73,9 @@ const Login = () => {
   };
   return (
     <div className="flex justify-center items-center py-12 px-1">
-      <div className="w-full md:w-1/2 lg:w-[500px] morphism p-4 md:p-10 morphism flex flex-wrap">
-        <h1 className="text-center w-full text-4xl mb-5 font-bold">
-          Login to Continue !! <br /> 🎉🎉
+      <div className="w-full mx-3 md:w-1/2 lg:w-[500px] morphism p-4 py-10 morphism flex flex-wrap">
+        <h1 className="text-center w-full text-2xl mb-5 font-bold">
+          🎉🎉 <br /> Login to Continue !!
         </h1>
         <form className="w-full" onSubmit={handleSubmit(onSubmit)}>
           <div className="flex flex-wrap">
@@ -94,7 +94,7 @@ const Login = () => {
           >
             {isPending ? "Loging In..." : "Log In"}
           </Button>
-          <div className="flex justify-between items-center px-2 mt-2">
+          <div className="flex justify-between items-center px-2 mt-6">
             <p>Not Register with us ?</p>
             <Button>
               <Link to={"/signup"}>Sign up</Link>

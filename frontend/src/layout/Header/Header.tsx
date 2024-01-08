@@ -1,4 +1,3 @@
-import useScrollView from "@/lib/useScrollView";
 import { Link, useLocation } from "react-router-dom";
 
 import DarkMode from "./DarkMode";
@@ -7,19 +6,17 @@ import Login from "./Login";
 import { useAppSelector } from "@/app/hook";
 
 const Header = () => {
-  const visible = useScrollView(60);
   const { pathname } = useLocation();
   const user = useAppSelector((st) => st.auth.user);
 
   const is = ["/admin", "/employee"].some((val) => pathname.includes(val));
   return (
     <header
-      className={`w-full flex-center relative bg-gray-200 dark:bg-gray-950 z-[9] ${
-        visible && "sticky top-0 z-10"
-      }   `}
+      // style={{backdropFilter:"blur(5px)"}}
+      className={`w-full flex-center z-[9] bg-gray-100 dark:bg-slate-800 sticky top-0 `}
     >
       <div className="md:container">
-        <div className="flex items-center h-[60px] justify-between">
+        <div className="flex items-center h-[60px] justify-between px-2">
           <Link
             to={`/${user?.role}`}
             className={`${is ? "ml-12 md:ml-0" : ""} text-xl font-bold`}

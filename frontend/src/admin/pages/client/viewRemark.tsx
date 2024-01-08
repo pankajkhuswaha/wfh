@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { WorkflowIcon } from "lucide-react";
+import { X } from "lucide-react";
 import Datatable from "usereactable";
 
 type Props = {
@@ -34,7 +34,7 @@ const RemarksList = ({ remarks, setremark }: Props) => {
         animate={{ scale: 1 }}
         transition={{ duration: 0.5 }}
         whileTap={{ y: "-100vh" }}
-        className="absolute cursor-pointer w-full h-full top-0 left-0 z-[99] bg-[#0a0a0a8c] dark:bg-[#fffcfc49] "
+        className="absolute cursor-pointer w-full min-h-screen overflow-hidden h-full top-0 left-0 z-[99] bg-[#0a0a0a8c] dark:bg-[#fffcfc49] "
       ></motion.div>
       <motion.div
         initial={{ scale: 0, y: -100 }}
@@ -42,7 +42,7 @@ const RemarksList = ({ remarks, setremark }: Props) => {
         transition={{ duration: 0.3, delay: 0.2 }}
         className="z-[100] w-full left-0 top-20 absolute p-4 flex items-center justify-center"
       >
-        <WorkflowIcon
+        <X
           onClick={() => {
             setremark(null);
           }}
@@ -52,7 +52,7 @@ const RemarksList = ({ remarks, setremark }: Props) => {
         <Datatable
           searchAble={false}
           title="Remarks"
-          className="bg-white dark:bg-gray-900 p-4 rounded md:w-[90%]"
+          className="bg-white dark:bg-gray-900 p-4 rounded w-full md:w-[90%]"
           columns={cloumns}
           rows={remarks}
         />
