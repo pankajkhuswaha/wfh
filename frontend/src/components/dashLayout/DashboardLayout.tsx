@@ -19,7 +19,7 @@ const DashLayout = ({ children, routes }: DashoardLayoutProp) => {
           </div>
         </div>
 
-        <div className="flex-[8]">{children}</div>
+        <div className="flex-[8] p-2">{children}</div>
       </div>
     </div>
   );

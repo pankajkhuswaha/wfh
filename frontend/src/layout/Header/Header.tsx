@@ -1,28 +1,33 @@
-
-
 import useScrollView from "@/lib/useScrollView";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 import DarkMode from "./DarkMode";
 
 import Login from "./Login";
+import { useAppSelector } from "@/app/hook";
 
 const Header = () => {
   const visible = useScrollView(60);
+  const { pathname } = useLocation();
+  const user = useAppSelector((st) => st.auth.user);
 
+  const is = ["/admin", "/employee"].some((val) => pathname.includes(val));
   return (
     <header
-      className={`w-full flex-center relative border-b-[1px] bg-gray-200 dark:bg-gray-950 z-[9] ${
+      className={`w-full flex-center relative bg-gray-200 dark:bg-gray-950 z-[9] ${
         visible && "sticky top-0 z-10"
       }   `}
     >
-      <div className="container px-3 py-1">
-        <div className="flex items-center justify-between py-4">
-          <Link to={"/"} className="text-xl font-bold ">
+      <div className="md:container">
+        <div className="flex items-center h-[60px] justify-between">
+          <Link
+            to={`/${user?.role}`}
+            className={`${is ? "ml-12 md:ml-0" : ""} text-xl font-bold`}
+          >
             <span className="text-primary">
               <i className="fa-solid fa-code"></i>
             </span>
-            <span className="max-sm:ml-10 whitespace-nowrap">
+            <span className="whitespace-nowrap">
               Work From <span className="text-blue-500">Home</span>
             </span>
           </Link>
@@ -37,5 +42,3 @@ const Header = () => {
 };
 
 export default Header;
-
-

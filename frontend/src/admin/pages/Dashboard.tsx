@@ -9,7 +9,7 @@ const Dashboard = () => {
     });
     console.log(data)
   return (
-    <div className="flex flex-wrap justify-between p-4 gap-2">
+    <div className="flex flex-wrap justify-between">
       {data?.map((stat: data, i: number) => (
         <Cards
           key={i}

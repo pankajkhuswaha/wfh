@@ -45,12 +45,6 @@ export const adminRoute: Sidebardata[] = [
         element: <ClientList />,
       },
       {
-        name: "Add Client",
-        logo: <MonitorUp />,
-        Link: "/admin/client/add",
-        element: <AddClient />,
-      },
-      {
         name: "Upload Data",
         logo: <MonitorUp />,
         Link: "/admin/client/upload",

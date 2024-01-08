@@ -17,12 +17,12 @@ const Login = () => {
           <p className="hidden md:block whitespace-nowrap">
             Hi {user.fullName} !!
           </p>
-          <Button onClick={logOut} variant="destructive">
+          <Button size={"sm"} onClick={logOut} variant="destructive">
             LogOut
           </Button>
         </div>
       ) : (
-        <Button>
+        <Button size={"sm"}>
           <Link to={"/login"}>Login</Link>
         </Button>
       )}
